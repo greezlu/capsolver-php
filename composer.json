@@ -1,6 +1,6 @@
 {
     "name": "greezlu/capsolver-php",
-    "type": "project",
+    "type": "library",
     "version": "0.9.0",
     "autoload": {
         "psr-4": {
