@@ -1,7 +1,7 @@
 {
     "name": "greezlu/capsolver-php",
     "type": "library",
-    "version": "0.9.0",
+    "version": "0.9.1",
     "autoload": {
         "psr-4": {
             "Capsolver\\": "src/"
@@ -15,7 +15,8 @@
     ],
     "require": {
         "php": ">=7.4",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "license": "MIT"
 }

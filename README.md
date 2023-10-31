@@ -30,14 +30,16 @@ More in the [documentation.](https://docs.capsolver.com/guide/captcha/ReCaptchaV
 
 Request:
 ```php
-$solution = $solver->recaptchaV3([
-    'type'          => \Capsolver\Solvers\Token\ReCaptchaV3::TASK,
-    'websiteURL'    => 'https://www.google.com/recaptcha/api2/demo',
-    'websiteKey'    => '6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-',
-    'pageAction'    => 'verify',
-    'minScore'      => 0.6,
-    'proxy'         => 'http:ip:port:user:pass'
-]);
+$solution = $solver->recaptchaV3(
+    \Capsolver\Solvers\Token\ReCaptchaV3::TASK,
+    [
+      'websiteURL'    => 'https://www.google.com/recaptcha/api2/demo',
+      'websiteKey'    => '6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-',
+      'pageAction'    => 'verify',
+      'minScore'      => 0.6,
+      'proxy'         => 'http:ip:port:user:pass'
+    ]
+);
 ```
 
 Response:
@@ -54,7 +56,7 @@ If case of an error solver throws an instance of `CapsolverException` exception.
 
 ```php
 try {
-    $solution = $solver->recaptchaV3([]);
+    $solution = $solver->recaptchaV3('', []);
 } catch (\Capsolver\Exceptions\RequestException $error) {
     // Error happened before api request
 } catch (\Capsolver\Exceptions\ResponseException $error) {

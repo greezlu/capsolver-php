@@ -9,10 +9,10 @@ use Capsolver\Exceptions\CapsolverException;
 interface SolverInterface
 {
     /**
-     * @param array $request
+     * @param array $params
      * @return array
      *
      * @throws CapsolverException
      */
-    public function solve(array $request): array;
+    public function solve(array $params): array;
 }

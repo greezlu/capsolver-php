@@ -5,9 +5,18 @@ declare(strict_types=1);
 namespace Capsolver\Abstracts;
 
 use Capsolver\Exceptions\CapsolverException;
+use Capsolver\Interfaces\SolverInterface;
 
-abstract class TokenAbstract extends TaskAbstract
+abstract class TokenAbstract
+    extends TaskAbstract
+    implements SolverInterface
 {
+    /**
+     * @param array $params
+     * @return array
+     */
+    abstract public function solve(array $params): array;
+
     /**
      * @param array $request
      * @return array

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Capsolver;
 
 use Capsolver\Exceptions\CapsolverException;
+use Capsolver\Solvers\Token\ReCaptchaV3;
 
 class CapsolverClient
 {
@@ -20,26 +21,18 @@ class CapsolverClient
     }
 
     /**
+     * @param string $type
      * @param array $params
      * @return array
      *
      * @throws CapsolverException
      */
-    public function recaptchaV3(array $params): array
-    {
-        $solver = new \Capsolver\Solvers\Token\ReCaptchaV3();
-        return $solver->solve($this->hydrate($params));
-    }
-
-    /**
-     * @param array $params
-     * @return array
-     */
-    private function hydrate(array $params): array
-    {
-        return [
-            'clientKey' => $this->key,
-            'task'      => $params
-        ];
+    public function recaptchaV3(
+        string $type,
+        array $params
+    ): array {
+        $params['type'] = $type;
+        $solver = new ReCaptchaV3($this->key);
+        return $solver->solve($params);
     }
 }

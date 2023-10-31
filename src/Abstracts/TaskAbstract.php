@@ -10,7 +10,18 @@ use Capsolver\Exceptions\RequestException;
 
 abstract class TaskAbstract
 {
-    private const HOST = 'https://api.capsolver.com/';
+    protected const HOST = 'https://api.capsolver.com/';
+
+    private string $key;
+
+    /**
+     * @param string $key
+     */
+    public function __construct(
+        string $key
+    ) {
+        $this->key = $key;
+    }
 
     /**
      * @param array $request
@@ -22,7 +33,7 @@ abstract class TaskAbstract
     {
         return $this->send(
             self::HOST . 'createTask',
-            $this->encode($request)
+            $this->encode($this->hydrate($request))
         );
     }
 
@@ -36,21 +47,20 @@ abstract class TaskAbstract
     {
         return $this->send(
             self::HOST . 'getTaskResult',
-            $this->encode($request)
+            $this->encode($this->hydrate($request, false))
         );
     }
 
     /**
-     * @param array $request
      * @return array
      *
      * @throws CapsolverException
      */
-    protected function getBalance(array $request): array
+    protected function getBalance(): array
     {
         return $this->send(
             self::HOST . 'getBalance',
-            $this->encode($request)
+            $this->encode($this->hydrate([], false))
         );
     }
 
@@ -61,6 +71,24 @@ abstract class TaskAbstract
      * @throws CapsolverException
      */
     abstract protected function process(array $request): array;
+
+    /**
+     * @param array $params
+     * @param bool $isTask
+     * @return array
+     */
+    private function hydrate(
+        array $params,
+        bool $isTask = true
+    ): array {
+        $request = $isTask
+            ? ['task' => $params]
+            : $params;
+
+        $request['clientKey'] = $this->key;
+
+        return $request;
+    }
 
     /**
      * @param array $data

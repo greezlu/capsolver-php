@@ -6,10 +6,9 @@ namespace Capsolver\Solvers\Token;
 
 use Capsolver\Exceptions\CapsolverException;
 use Capsolver\Exceptions\RequestException;
-use Capsolver\Interfaces\SolverInterface;
 use Capsolver\Abstracts\TokenAbstract;
 
-class ReCaptchaV3 extends TokenAbstract implements SolverInterface
+class ReCaptchaV3 extends TokenAbstract
 {
     public const TASK                       = 'ReCaptchaV3Task';
     public const ENTERPRISE_TASK            = 'ReCaptchaV3EnterpriseTask';
@@ -18,25 +17,25 @@ class ReCaptchaV3 extends TokenAbstract implements SolverInterface
     public const M1_TASK_PROXYLESS          = 'ReCaptchaV3M1TaskProxyLess';
 
     /**
-     * @param array $request
+     * @param array $params
      * @return array
      *
      * @throws CapsolverException
      */
     public function solve(
-        array $request
+        array $params
     ): array {
-        $this->validate($request);
-        return $this->process($request);
+        $this->validate($params);
+        return $this->process($params);
     }
 
     /**
-     * @param array $request
+     * @param array $params
      * @return void
      *
      * @throws RequestException
      */
-    private function validate(array $request): void
+    private function validate(array $params): void
     {
         $allowedTypes = [
             self::TASK,
@@ -46,7 +45,7 @@ class ReCaptchaV3 extends TokenAbstract implements SolverInterface
             self::M1_TASK_PROXYLESS
         ];
 
-        $type = $request['task']['type'] ?? '';
+        $type = $params['type'] ?? '';
 
         if (!in_array($type, $allowedTypes)) {
             throw new RequestException(
