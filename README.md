@@ -46,9 +46,9 @@ $solution = $solver->recaptchaV3(
 Response:
 ```php
 $solution = [
-    "userAgent" => "xxx",
-    "expireTime" => 1671615324290,
-    "gRecaptchaResponse" => "3AHJ....."
+    'userAgent' => 'xxx',
+    'expireTime' => 1671615324290,
+    'gRecaptchaResponse' => '3AHJ.....'
 ];
 ```
 
