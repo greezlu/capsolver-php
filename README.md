@@ -6,6 +6,7 @@ The simple client for [CapSolver](https://capsolver.com) captcha solving service
 - [Configuration](#configuration)
 - [Solve captcha](#solve-captcha)
     - [ReCaptcha v3](#recaptcha-v3)
+    - [ReCaptcha v2](#recaptcha-v2)
 - [Error handling](#error-handling)
 
 ## Installation
@@ -48,6 +49,30 @@ $solution = [
     "userAgent" => "xxx",
     "expireTime" => 1671615324290,
     "gRecaptchaResponse" => "3AHJ....."
+];
+```
+
+### ReCaptcha v2
+More in the [documentation.](https://docs.capsolver.com/guide/captcha/ReCaptchaV2.html)
+
+Request:
+```php
+$solution = $solver->recaptchaV2(
+    \Capsolver\Solvers\Token\ReCaptchaV2::TASK,
+    [
+      'websiteURL'    => 'https://www.google.com/recaptcha/api2/demo',
+      'websiteKey'    => '6Le-wvkSAAAAAPBMRTvw0Q4Muexq9bi0DJwx_mJ-',
+      'proxy'         => 'http:ip:port:user:pass'
+    ]
+);
+```
+
+Response:
+```php
+$solution = [
+    'userAgent' => 'xxx',
+    'expireTime' => 1671615324290,
+    'gRecaptchaResponse' => '3AHJ.....'
 ];
 ```
 
