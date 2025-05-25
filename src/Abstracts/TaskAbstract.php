@@ -171,7 +171,7 @@ abstract class TaskAbstract
      */
     private function validate(
         $curl,
-        string $response,
+        ?string $response,
         string $error
     ): void {
         if ($error) {
