@@ -151,7 +151,7 @@ abstract class TaskAbstract
      */
     private function execute($curl): array
     {
-        $response = curl_exec($curl);
+        $response = (string)curl_exec($curl);
         $error = curl_error($curl);
 
         $this->validate($curl, $response, $error);
@@ -171,7 +171,7 @@ abstract class TaskAbstract
      */
     private function validate(
         $curl,
-        ?string $response,
+        string $response,
         string $error
     ): void {
         if ($error) {
