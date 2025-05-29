@@ -7,6 +7,7 @@ namespace Capsolver;
 use Capsolver\Exceptions\CapsolverException;
 use Capsolver\Solvers\Token\ReCaptchaV3;
 use Capsolver\Solvers\Token\ReCaptchaV2;
+use Capsolver\Solvers\CapsolverBalance;
 use Capsolver\Solvers\Token\Turnstile;
 
 class CapsolverClient
@@ -66,5 +67,16 @@ class CapsolverClient
         $params['type'] = $type;
         $solver = new ReCaptchaV2($this->key);
         return $solver->solve($params);
+    }
+
+    /**
+     * @return array
+     *
+     * @throws CapsolverException
+     */
+    public function getBalance(): array
+    {
+        $solver = new CapsolverBalance($this->key);
+        return $solver->getBalance();
     }
 }
