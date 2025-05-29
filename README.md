@@ -25,10 +25,10 @@ $solver = new \Capsolver\CapsolverClient('YOUR_API_KEY');
 ```
 
 ## Solve captcha
-Find more information about request and response in the related documentation page. 
+Find more information about request and response in the related documentation page.
 
 ### ReCaptcha v3
-More in the [documentation.](https://docs.capsolver.com/guide/captcha/ReCaptchaV3.html)
+More in the [documentation.](https://docs.capsolver.com/en/guide/captcha/ReCaptchaV3/)
 
 Request:
 ```php
@@ -49,12 +49,12 @@ Response:
 $solution = [
     'userAgent' => 'xxx',
     'expireTime' => 1671615324290,
-    'gRecaptchaResponse' => '3AHJ.....'
+    'gRecaptchaResponse' => '3AHJ...'
 ];
 ```
 
 ### ReCaptcha v2
-More in the [documentation.](https://docs.capsolver.com/guide/captcha/ReCaptchaV2.html)
+More in the [documentation.](https://docs.capsolver.com/en/guide/captcha/ReCaptchaV2/)
 
 Request:
 ```php
@@ -73,7 +73,7 @@ Response:
 $solution = [
     'userAgent' => 'xxx',
     'expireTime' => 1671615324290,
-    'gRecaptchaResponse' => '3AHJ.....'
+    'gRecaptchaResponse' => '3AHJ...'
 ];
 ```
 
