@@ -7,6 +7,7 @@ namespace Capsolver;
 use Capsolver\Exceptions\CapsolverException;
 use Capsolver\Solvers\Token\ReCaptchaV3;
 use Capsolver\Solvers\Token\ReCaptchaV2;
+use Capsolver\Solvers\Token\Turnstile;
 
 class CapsolverClient
 {
@@ -19,6 +20,20 @@ class CapsolverClient
         string $key
     ) {
         $this->key = $key;
+    }
+
+    /**
+     * @param array $params
+     * @return array
+     *
+     * @throws CapsolverException
+     */
+    public function turnstile(
+        array $params
+    ): array {
+        $params['type'] = Turnstile::ANTI_TURNSTILE;
+        $solver = new Turnstile($this->key);
+        return $solver->solve($params);
     }
 
     /**

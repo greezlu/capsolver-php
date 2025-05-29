@@ -7,6 +7,7 @@ The simple client for [CapSolver](https://capsolver.com) captcha solving service
 - [Solve captcha](#solve-captcha)
     - [ReCaptcha v3](#recaptcha-v3)
     - [ReCaptcha v2](#recaptcha-v2)
+    - [Cloudflare Turnstile](#cloudflare-turnstile)
 - [Error handling](#error-handling)
 
 ## Installation
@@ -73,6 +74,30 @@ $solution = [
     'userAgent' => 'xxx',
     'expireTime' => 1671615324290,
     'gRecaptchaResponse' => '3AHJ.....'
+];
+```
+
+### Cloudflare Turnstile
+More in the [documentation](https://docs.capsolver.com/en/guide/captcha/cloudflare_turnstile/).
+
+Request:
+```php
+$solution = $solver->turnsite([
+    'websiteURL'    => 'https://www.yourwebsite.com',
+    'websiteKey'    => '0x4XXXXXXXXXXXXXXXXX',
+    'metadata'      => [
+        'action'        => 'login', //optional
+        'cdata'         => '0000-1111-2222-3333-example-cdata' //optional
+    ]
+]);
+```
+
+Response:
+```php
+$result = [
+    'token'     => "0.mF74FV8wEuf...",
+    'type'      => 'turnstile',
+    'userAgent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)...'
 ];
 ```
 
